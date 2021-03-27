@@ -94,7 +94,7 @@ cqlsh:employee> select * from employee_info;
     121 |       31-7-2000 | Administration |   Associate |  Prabhas |                              {'Visualisation tool'} |  35000
 
 (3 rows)
-cqlsh:employee> insert into employee_info(emp_id, emp_name, date_of_joining, designation, dept, salary, projects) values(123, 'Prakash', '4-10-2014', 'Associate', 'HR', 60000, {'Nakumora Company Deal'}) using ttl 200;
+cqlsh:employee> insert into employee_info(emp_id, emp_name, date_of_joining, designation, dept, salary, projects) values(123, 'Prakash', '4-10-2014', 'Associate', 'HR', 60000, {'Nakumora Company Deal'}) using ttl 15;
 cqlsh:employee> select * from employee_info;
 
  emp_id | date_of_joining | dept           | designation | emp_name | projects                                            | salary
