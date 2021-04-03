@@ -1,0 +1,140 @@
+C:\Program Files\MongoDB\Server\4.4\bin>mongo
+MongoDB shell version v4.4.0
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("a703ae46-dcc8-4fd2-bdbc-085f4c3e1a23") }
+MongoDB server version: 4.4.0
+---
+The server generated these startup warnings when booting:
+        2021-04-01T13:09:26.759+05:30: ***** SERVER RESTARTED *****
+        2021-04-01T13:09:39.652+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> use Student
+switched to db Student
+> show dbs
+admin        0.000GB
+config       0.000GB
+local        0.000GB
+womensafety  0.000GB
+> db.Student.insert({"roll_no": 10, "name": "XYZ", "age": 20, "contact": "1234567890", "email": "abc@gmail.com"}, {"roll_no": 11, "name": "ABC", "age": 21, "contact": "0192837465", "email": "xyz@gmail.com"}, {"roll_no": 12, "name": "PQR", "age": 20, "contact": "1290347856", "email": "pqr@gmail.com"})
+WriteResult({ "nInserted" : 1 })
+> show Student
+uncaught exception: Error: don't know how to show [Student] :
+shellHelper.show@src/mongo/shell/utils.js:1186:11
+shellHelper@src/mongo/shell/utils.js:814:15
+@(shellhelp2):1:1
+> db.Student.find()
+{ "_id" : ObjectId("606805cc8a4c09f209045b70"), "roll_no" : 10, "name" : "XYZ", "age" : 20, "contact" : "1234567890", "email" : "abc@gmail.com" }
+> db.Student.find().pretty()
+{
+        "_id" : ObjectId("606805cc8a4c09f209045b70"),
+        "roll_no" : 10,
+        "name" : "XYZ",
+        "age" : 20,
+        "contact" : "1234567890",
+        "email" : "abc@gmail.com"
+}
+> db.Student.insert({"roll_no": 11, "name": "ABC", "age": 21, "contact": "0192837465", "email": "xyz@gmail.com"}, {"roll_no": 12, "name": "PQR", "age": 20, "contact": "1290347856", "email": "pqr@gmail.com"})
+WriteResult({ "nInserted" : 1 })
+> db.Student.find().pretty()
+{
+        "_id" : ObjectId("606805cc8a4c09f209045b70"),
+        "roll_no" : 10,
+        "name" : "XYZ",
+        "age" : 20,
+        "contact" : "1234567890",
+        "email" : "abc@gmail.com"
+}
+{
+        "_id" : ObjectId("606806508a4c09f209045b71"),
+        "roll_no" : 11,
+        "name" : "ABC",
+        "age" : 21,
+        "contact" : "0192837465",
+        "email" : "xyz@gmail.com"
+}
+> db.Student.insert({"roll_no": 12, "name": "PQR", "age": 20, "contact": "1290347856", "email": "pqr@gmail.com"})
+WriteResult({ "nInserted" : 1 })
+> db.Student.find().pretty()
+{
+        "_id" : ObjectId("606805cc8a4c09f209045b70"),
+        "roll_no" : 10,
+        "name" : "XYZ",
+        "age" : 20,
+        "contact" : "1234567890",
+        "email" : "abc@gmail.com"
+}
+{
+        "_id" : ObjectId("606806508a4c09f209045b71"),
+        "roll_no" : 11,
+        "name" : "ABC",
+        "age" : 21,
+        "contact" : "0192837465",
+        "email" : "xyz@gmail.com"
+}
+{
+        "_id" : ObjectId("606806678a4c09f209045b72"),
+        "roll_no" : 12,
+        "name" : "PQR",
+        "age" : 20,
+        "contact" : "1290347856",
+        "email" : "pqr@gmail.com"
+}
+> db.Student.update({"roll_no": 10}, {$set: {"email": "abcupdated@gmail.com"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Student.find({"roll_no": 10}).pretty()
+{
+        "_id" : ObjectId("606805cc8a4c09f209045b70"),
+        "roll_no" : 10,
+        "name" : "XYZ",
+        "age" : 20,
+        "contact" : "1234567890",
+        "email" : "abcupdated@gmail.com"
+}
+> db.Student.update({"roll_no": 11}, {$set: {"name": "FEM"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> mongoexport --db Student --collection student --type = csv --fields _id, roll_no, name, email, age, contact --out D:\GOT\MongoData.csv
+uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:14
+> db.Student.drop()
+true
+> show collections
+> show collections
+> show collections
+Student
+> db.Student.find().pretty()
+{
+        "_id" : ObjectId("606811b65a051a1cbf3779ae"),
+        "Roll_no" : 10.0,
+        "Name" : "XYZ",
+        "Age" : 20,
+        "Contact" : "1234567890",
+        "Email" : "abcupdated@gmail.com"
+}
+{
+        "_id" : ObjectId("606811b65a051a1cbf3779af"),
+        "Roll_no" : 11,
+        "Name" : "FEM",
+        "Age" : 21,
+        "Contact" : "0192837465",
+        "Email" : "xyz@gmail.com"
+}
+{
+        "_id" : ObjectId("606811b65a051a1cbf3779b0"),
+        "Roll_no" : 12.0,
+        "Name" : "PQR",
+        "Age" : 20.0,
+        "Contact" : "1290347856",
+        "Email" : "pqr@gmail.com"
+}
+>

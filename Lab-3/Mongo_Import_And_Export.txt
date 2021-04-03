@@ -1,0 +1,8 @@
+C:\Program Files\MongoDB\Tools\100\bin>mongoexport --uri="mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb" --db=Student --collection=Student --fields="_id,name,roll_no,email,age,contact" --out=D:\GOT\MongoData.csv
+2021-04-03T12:13:20.656+0530    WARNING: ignoring unsupported URI parameter 'gssapiservicename'
+2021-04-03T12:13:20.663+0530    connected to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+2021-04-03T12:13:20.670+0530    exported 3 records
+
+C:\Program Files\MongoDB\Tools\100\bin>mongoimport --uri="mongodb://127.0.0.1:27017/" --type=csv --db=Student --collection=Student --headerline --file="D:\GOT\MongoData.csv"
+2021-04-03T12:26:54.254+0530    connected to: mongodb://127.0.0.1:27017/
+2021-04-03T12:26:54.551+0530    3 document(s) imported successfully. 0 document(s) failed to import.
